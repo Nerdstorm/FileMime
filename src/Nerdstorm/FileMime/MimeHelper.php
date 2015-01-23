@@ -14,7 +14,7 @@ class MimeHelper
      * @param  string $filepath
      * @return array
      */
-    public static function guessMimetype($filepath)
+    public static function guessMimeType($filepath)
     {
         if (!file_exists($filepath)) {
             throw new Exception('File doesn\'t exist ' . $filepath);
