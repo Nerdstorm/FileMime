@@ -1,0 +1,25 @@
+{
+    "name": "Nerdstorm/FileMime",
+    "type": "library",
+    "description": "A PHP(>5.4) library for guessing MIME-types.",
+    "keywords": ["file", "mime", "mime-types", "mimetype"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Purinda Gunasekara",
+            "email": "purinda@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "": ["src/"]
+        }
+    },
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "minimum-stability": "beta",
+    "config": {
+        "bin-dir": "bin"
+    }
+}
