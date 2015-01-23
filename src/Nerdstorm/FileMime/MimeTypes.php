@@ -16,6 +16,7 @@ namespace Nerdstorm\FileMime;
 
 class MimeTypes
 {
+    const EXT_SEPARATOR = ' ';
 
     /**
      * Limited list of MIME-types that can only be mapped to a possible file extension[s].
@@ -721,13 +722,4 @@ class MimeTypes
         "x-conference/x-cooltalk"                                                   => "ice"
     ];
 
-    /**
-     * Return an array of possible extensions for a given mime-type
-     * @param  string $mime_type lookup mime-type
-     * @return array             possible file extensions
-     */
-    public function getExtension($mime_type)
-    {
-        return self::$mime_types[$mime_type];
-    }
 }

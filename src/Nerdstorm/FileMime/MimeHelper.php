@@ -4,7 +4,7 @@ namespace Nerdstorm\FileMime;
 /**
  * Inspects data for common formats using Linux specific tools.
  */
-class MimeHelper
+class MimeHelper extends MimeTypes
 {
     static $finfo = null;
 
@@ -17,7 +17,11 @@ class MimeHelper
     public static function guessMimeType($filepath)
     {
         if (!file_exists($filepath)) {
-            throw new Exception('File doesn\'t exist ' . $filepath);
+            throw new \Exception('File doesn\'t exist ' . $filepath);
+        }
+
+        if (!filesize($filepath)) {
+            throw new \Exception('File empty ' . $filepath);
         }
 
         if (null === self::$finfo) {
@@ -40,10 +44,10 @@ class MimeHelper
         $mime_type = self::guessMimetype($filepath);
 
         if (empty($mime_type)) {
-            throw new UnexpectedValueException('empty MIME-type');
+            throw new \UnexpectedValueException('empty MIME-type');
         }
 
-        return MimeTypes::getExtension($mime_type);
+        return self::getExtension($mime_type);
     }
 
     /**
@@ -56,9 +60,24 @@ class MimeHelper
     public static function guessExtensionFromMimeType($mimetype)
     {
         if (empty($mime_type)) {
-            throw new UnexpectedValueException('empty MIME-type');
+            throw new \UnexpectedValueException('empty MIME-type');
         }
 
-        return MimeTypes::getExtension($mime_type);
+        return self::getExtension($mime_type);
     }
+
+    /**
+     * Return an array of possible extensions for a given mime-type
+     *
+     * @param  string $mime_type lookup mime-type
+     * @return array             possible file extensions
+     */
+    protected static function getExtension($mime_type)
+    {
+        if (!isset(parent::$mime_types[$mime_type])) {
+            throw new \UnexpectedValueException('MIME-type not defined.');
+        }
+        return explode(parent::EXT_SEPARATOR, parent::$mime_types[$mime_type]);
+    }
+
 }
