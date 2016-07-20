@@ -54,10 +54,10 @@ class MimeHelper extends MimeTypes
      * Get the file extension from the MIME-type. If there are more than
      * one matching extension, returning array will have each extension.
      *
-     * @param  string $mimetype
+     * @param  string $mime_type
      * @return array
      */
-    public static function guessExtensionFromMimeType($mimetype)
+    public static function guessExtensionFromMimeType($mime_type)
     {
         if (empty($mime_type)) {
             throw new \UnexpectedValueException('empty MIME-type');
